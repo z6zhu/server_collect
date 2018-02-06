@@ -1,0 +1,64 @@
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>运维数据维护平台</title>
+ <!-- ==================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">   
+   <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script> 
+  <script src="https://cdn.bootcss.com/foundation/5.5.3/js/foundation.min.js"></script>  
+   <script src="https://cdn.bootcss.com/foundation/5.5.3/js/vendor/modernizr.js"></script>  
+<!-- ==================== -->
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/left_menu.css' %}" />
+  <script type="text/javascript">
+   $(document).ready(function() {
+	    $("#firstpane .menu_body:eq(0)").show();
+	    $("#firstpane h3.menu_head").click(function() {
+	        $(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+	        $(this).siblings().removeClass("current");
+	    });
+	    $("#secondpane .menu_body:eq(0)").show();
+	    $("#secondpane h3.menu_head").mouseover(function() {
+	        $(this).addClass("current").next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+	        $(this).siblings().removeClass("current");
+	    });
+	});
+   </script>
+</head>
+<body>
+<div id="top_column" style="position:absolute;left:0%;top:0%;width:100%;height:15%;background-color:blue;">
+
+	<div style="position:absolute;left:80%;top:30%;width:20%;height:20%;background-color:blue;color:white;text-align:center;">welcome,{{username}}</div>
+	<div style="position:absolute;left:80%;top:50%;width:20%;height:40%;background-color:blue;color:white;text-align:center;"><a href="{% url 'logout_page'  %}">logout</a></div>
+	
+</div>
+
+<div id="left_column" style="position:absolute;left:0%;top:15%;width:10%;height:80%;background-color:#f1f1f1;">
+ 	 
+	 <div id="firstpane" class="menu_list">
+		<h3 class="menu_head current"><a href="{% url 'client_account'  %}"  target="frame_name">客户账户</a></h3>
+	
+		<h3 class="menu_head">服务器</h3>
+			<div style="display:none" class="menu_body">
+				<a href="{% url 'online_server'  %}" target="frame_name">线上服务器</a>
+				<a href="{% url 'test_server'  %}" target="frame_name">测试服务器</a>
+				<a href="{% url 'windows_server'  %}" target="frame_name">zcell详细</a>
+			</div>	
+		
+		<h3 class="menu_head"><a href="{% url 'test_fresh'  %}"  target="frame_name">测试更新</a></h3>
+	</div>
+	
+</div>
+
+<iframe src="{% url 'test_fresh'  %}"  frameborder="0" name="frame_name" style="position:absolute;left:10%;top:15%;width:90%;height:80%;"></iframe>
+
+
+<div id="bottom_column" style="position:absolute;left:0%;top:90%;width:100%;height:10%;background-color:blue;text-align:center;color:white;">
+	<div style="position:absolute;top:45%;width:100%;height:20%;">CopyRight@JIEXIN SECURITY</div>
+</div>
+
+</body>
+</html>

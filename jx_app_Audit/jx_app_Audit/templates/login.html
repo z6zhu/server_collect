@@ -1,0 +1,33 @@
+<html>
+<head>
+ <meta charset="utf-8">
+</head>
+<body>
+<div style="position:absolute;left:40%;top:20%;width:20%;height:20%;">
+
+
+<form  action="/login/" method="POST">
+    <table>
+        <tr>
+            <td><label for="txtname">账号:</label></td>
+            <td><input type="text" id="txtname" name="username" /></td>
+        </tr>
+        <tr>
+            <td><label for="txtpswd">密码:</label></td>
+            <td><input type="password" id="txtpswd" name="pswd" /></td>
+        </tr>
+        <tr>
+            <td colspan=2>
+            <button type="button"><a href="/change_pwd/" target="_self">修改密码</a></button>
+               <button type="button"><a href="/register/" target="_self">注册</a></button>
+              <input type="reset" />
+                 <input type="submit" />
+             
+                
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+</body>
+</html>

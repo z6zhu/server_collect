@@ -1,0 +1,241 @@
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/foundation/5.5.3/js/foundation.min.js"></script>
+  <script src="https://cdn.bootcss.com/foundation/5.5.3/js/vendor/modernizr.js"></script>
+ <style type="text/css">
+th,td{
+width:120px;
+height:40px;
+}
+</style>
+</head>
+<body>
+
+
+<div id="query_zone" style="position:absolute;left:0%;top:0%;width:100%;height:15%;">
+  	<input id="input_go" type="text" name="fname" value="{{zero_b}}" style="position:absolute;left:10%;top:20%;width:30%;height:40%;"/>
+ 	<button id="query_go" type="button"  style="position:absolute;left:41%;top:20%;width:8%;height:40%;">查      询</button>
+ 	
+ 	<button id="add_buttom" data-reveal-id="myModal" type="button"  style="position:absolute;left:55%;top:20%;width:8%;height:40%;">添加模块</button>
+ 	
+ 	
+ <div id="myModal" class="reveal-modal" data-reveal>
+ 	<form  action="{% url 'windows_server'  %}" method="POST">
+ 	
+		区域: <input type="text" name="zone">
+		公司ID: <input type="text" name="company_id" >
+		公司名: <input type="text" name="company_name">
+		服务器IP: <input type="text" name="server_ip">
+		服务器名: <input type="text" name="server_name">
+		Node: <input type="text" name="node">
+		密码: <input type="text" name="passwd">
+		模块名: <input type="text" name="module_name">
+		主机端口: <input type="text" name="port">
+		视频端口 : <input type="text" name="portv">
+		
+		<button type="submit" class="button round">提交</button>
+		<button type="reset" class="button round">重置</button>
+	</form>
+  </div>
+  
+   <div id=myModal_update class="reveal-modal" data-reveal>
+ 	<form  action="{% url 'windows_server'  %}" method="POST">
+ 		id: <input type="text" name="module_id">
+		区域: <input type="text" name="zone">
+		公司ID: <input type="text" name="company_id" >
+		公司名: <input type="text" name="company_name">
+		服务器IP: <input type="text" name="server_ip">
+		服务器名: <input type="text" name="server_name">
+		Node: <input type="text" name="node">
+		密码: <input type="text" name="passwd">
+		模块名: <input type="text" name="module_name">
+		主机端口: <input type="text" name="port">
+		视频端口 : <input type="text" name="portv">
+		
+		<button type="submit" class="button round">提交</button>
+		<button type="reset" class="button round">重置</button>
+	</form>
+  </div>
+  
+  <div id="myModal_entry" class="reveal-modal" data-reveal>
+ 	<form  action="{% url 'windows_server'  %}" method="POST">
+ 	
+		模块名: <input type="text" name="module_entry">
+		公司ID: <input type="text" name="company_id_entry">
+		插件名: <input type="text" name="module_in_entry">
+		插件版本: <input type="text" name="module_version_entry">
+		插件修改时间: <input type="text" name="module_date_entry">
+		插件更新时间: <input type="text" name="module_update_entry">
+		其他信息: <input type="text" name="additional_entry">
+		
+	
+		
+		<button type="submit" class="button round">提交</button>
+		<button type="reset" class="button round">重置</button>
+	</form>
+  </div>
+  
+    <div id="myModal_entry_update" class="reveal-modal" data-reveal>
+ 	<form  action="{% url 'windows_server'  %}" method="POST">
+ 		ID: <input type="text" name="update_id">
+		模块名: <input type="text" name="module_entry">
+		公司ID: <input type="text" name="company_id_entry">
+		插件名: <input type="text" name="module_in_entry">
+		插件版本: <input type="text" name="module_version_entry">
+		插件修改时间: <input type="text" name="module_date_entry">
+		插件更新时间: <input type="text" name="module_update_entry">
+		其他信息: <input type="text" name="additional_entry">
+		
+	
+		
+		<button type="submit" class="button round">修改</button>
+		<button type="reset" class="button round">重置</button>
+	</form>
+  </div>
+  
+</div>
+
+<div id="show_zone" style="position:absolute;left:0%;top:15%;width:100%;height:70%;overflow-y:auto;">
+
+<table style="position:absolute;left:10%;padding:1px;table-layout:fixed;">
+  <thead>
+    <tr>
+      <th>省</th>
+      <th>公司ID</th>
+      <th>公司名</th>
+      <th>服务器IP</th>
+      <th>服务器名</th>
+      <th>Node</th>
+      <th>密码</th>
+      <th>模块名</th>
+      <th>主机端口</th>
+      <th>视频端口</th>
+      <th>实施操作</th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+</div>
+<!-- 
+<div id="page_zone" style="position:absolute;left:40%;top:85%;width:30%;height:15%;border:3px;">
+	<ul class="pagination" style="margin:0px; padding:0px;">
+ 		<li class="arrow"><a href="{% url 'windows_server'  %}/?page={{prev_pager}}&input_value={{input_info}}">«</a></li>
+ 		 <li ><a href="{% url 'windows_server'  %}/?page=1&input_value={{input_info}}">1</a></li>
+ 		 <li><a href="{% url 'windows_server'  %}/?page=2&input_value={{input_info}}">2</a></li>
+  		<li><a href="{% url 'windows_server'  %}/?page=3&input_value={{input_info}}">3</a></li>
+  		<li><a href="{% url 'windows_server'  %}/?page=4&input_value={{input_info}}">4</a></li>
+ 		 <li><a href="{% url 'windows_server'  %}?page=5&input_value={{input_info}}">5</a></li>
+		<li class="arrow"><a href="{% url 'windows_server'  %}/?page={{next_pager}}&input_value={{input_info}}">»</a></li>
+	</ul>
+	<div style="position:absolute;top:0%;left:50%;width:35%;height:20%;">第<input id="input_button" type="text" value="{{page}}" style="width:20%;height:20%;display:inline">页  </div>
+	<div id="button_go" style="position:absolute;top:0%;left:70%;width:5%;height:20%;background-color: #4CAF50;border-radius:5px;border: 1px solid green;">Go</div>
+	<div style="position:absolute;top:0%;left:80%;width:10%;height:20%;">共{{num_pages}}页</div>
+</div>
+ -->
+ <script type="text/javascript">
+ $(document).ready(function() {
+	    $(document).foundation();                        
+	})
+// init the  show_zone 
+{% for info_go in info %}
+ 	
+// <button id="add_entry" data-reveal-id="myModal_entry" type="button"  style="position:absolute;left:65%;top:20%;width:8%;height:40%;">添加插件</button>
+// up is present up the  entry  .....for  unique
+test="{{info_go.id}}"+"up"
+update_str="<a id=\""+test+"\""+" "+"href="+"\"#\""+" "+"data-reveal-id="+"myModal_update" +">修改</a>"
+
+click_str="<a id=\"{{info_go.id}}\""+" "+"href="+"\"#\""+" "+"data-reveal-id="+"myModal_entry" +">添加插件</a>" 
+
+delete_str="<a href="+"{% url 'windows_server'  %}/?pk_id={{info_go.id}}"+">del</a>" 
+
+$("table tbody").append("<tr>"+"<td>"+"{{info_go.zone}}"+"</td>"+"<td>"+"{{info_go.company_id}}"+"</td>"+"<td>"+"{{info_go.company_name}}"+"</td>"+"<td>"+"{{info_go.server_ip}}"+"</td><td>"+"{{info_go.server_name}}"+"</td><td>"+"{{info_go.node}}"+"</td><td>"+"{{info_go.passwd}}"+"</td><td>"+"{{info_go.module_name}}"+"</td><td>"+"{{info_go.port}}"+"</td>"+"<td>"+"{{info_go.portv}}"+"</td><td>"+delete_str+"&nbsp"+click_str+"&nbsp"+update_str+"</td>"+"</tr>");
+
+	{% for infomation_go in infomation %}
+	 	{% if info_go.company_id == infomation_go.company_id and info_go.module_name == infomation_go.module %}
+	 	
+	 	
+	 	click_str="<a id=\"{{infomation_go.id}}\""+" "+"href="+"\"#\""+" "+"data-reveal-id="+"myModal_entry_update" +">修改</a>"
+	 	
+	 	del_str="<a href="+"{% url 'windows_server'  %}/?detail_id={{infomation_go.id}}"+">del</a>" 
+	 	$("table tbody").append("<tr>"+"<td>"+"------------"+"</td>"+"<td colspan="+"2>"+"{{infomation_go.module_in}}"+"</td>"+"<td>"+"{{infomation_go.module_version}}"+"</td>"+"<td>"+"{{infomation_go.module_date}}"+"</td><td>"+"{{infomation_go.module_update}}"+"</td><td>"+"{{infomation_go.additional}}"+"</td><td></td>"+"<td colspan="+"2>"+del_str+"&nbsp&nbsp"+click_str+"</td>"+"</tr>");
+			
+	$("#{{infomation_go.id}}").click(function(){
+		
+			$("#myModal_entry_update input[name='update_id']").val("{{infomation_go.id}}");
+			$("#myModal_entry_update input[name='module_entry']").val("{{infomation_go.module}}"); 
+			$("#myModal_entry_update input[name='company_id_entry']").val("{{infomation_go.company_id}}"); 
+			$("#myModal_entry_update input[name='module_in_entry']").val("{{infomation_go.module_in}}");
+			$("#myModal_entry_update input[name='module_version_entry']").val("{{infomation_go.module_version}}");
+			$("#myModal_entry_update input[name='module_date_entry']").val("{{infomation_go.module_date}}");
+			$("#myModal_entry_update input[name='module_update_entry']").val("{{infomation_go.module_update}}");
+			$("#myModal_entry_update input[name='additional_entry']").val("{{infomation_go.additional}}");
+			
+		});
+		
+		
+	 	{%  endif %}
+	 	
+	{% endfor %}
+	
+	
+	$("#{{info_go.id}}").click(function(){
+		
+		$("#myModal_entry input[name='module_entry']").val("{{info_go.module_name}}"); 
+		$("#myModal_entry input[name='company_id_entry']").val("{{info_go.company_id}}"); 
+		
+	});
+	
+	
+	$("#"+test).click(function(){
+		
+		
+	$("#myModal_update input[name='module_id']").val("{{info_go.id}}");
+	$("#myModal_update input[name='zone']").val("{{info_go.zone}}");
+	$("#myModal_update input[name='company_id']").val("{{info_go.company_id}}");
+	$("#myModal_update input[name='company_name']").val("{{info_go.company_name}}");
+	$("#myModal_update input[name='server_name']").val("{{info_go.server_name}}");
+	$("#myModal_update input[name='server_ip']").val("{{info_go.server_ip}}");
+	$("#myModal_update input[name='node']").val("{{info_go.node}}");
+	$("#myModal_update input[name='passwd']").val("{{info_go.passwd}}");
+	$("#myModal_update input[name='module_name']").val("{{info_go.module_name}}");
+	$("#myModal_update input[name='port']").val("{{info_go.port}}");
+	$("#myModal_update input[name='portv']").val("{{info_go.portv}}");
+
+	
+		
+	});
+	
+
+	
+	
+
+{% endfor %}
+
+
+//-------------------------------------------------------------------
+
+
+var input_button=""
+
+$("#query_go").click(function(){
+	input_value=$("#input_go").val();
+	location.href="{% url 'windows_server'  %}/?input_value="+input_value.toString();
+	
+	});	
+
+//--------------------------------------------
+
+		
+$("#button_go").click(function(){
+	input_button=$("#input_button").val();
+		location.href="{% url 'windows_server'  %}?page="+input_button.toString();
+});
+				
+</script>
+</body>
+</html>
